@@ -1,13 +1,10 @@
 """Welcome to Reflex! This file showcases the custom component in a basic app."""
 
 from typing import List, Dict
-from rxconfig import config
 
 import reflex as rx
 
 from reflex_lasso_select import lasso_select
-
-filename = f"{config.app_name}/{config.app_name}.py"
 
 
 class State(rx.State):
@@ -18,24 +15,22 @@ class State(rx.State):
     def set_points(self, pts: List[Dict[str, float]]):
         self.selected_points = pts
 
+    @rx.var
+    def selected_points_string(self) -> str:
+        return str(self.selected_points)
+
 
 def index() -> rx.Component:
     return rx.center(
-        rx.theme_panel(),
         rx.vstack(
-            rx.heading("Welcome to Reflex!", size="9"),
-            rx.text(
-                "Test your custom component by editing ",
-                rx.code(filename),
-                font_size="2em",
-            ),
+            rx.heading("Lasso select demo", size="9"),
             lasso_select(
-                src="test_image.png",
+                src="https://picsum.photos/400/500",
                 value=State.selected_points,
                 on_change=State.set_points,
             ),
             rx.text("Selected Points:"),
-            rx.text(State.selected_points),
+            rx.text(State.selected_points_string),
             align="center",
             spacing="7",
         ),
