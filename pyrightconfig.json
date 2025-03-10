@@ -1,0 +1,5 @@
+{
+  "include": ["custom_components", "lasso_select_demo"],
+  "exclude": ["node_modules", "dist"],
+  "reportMissingTypeStubs": true
+}
