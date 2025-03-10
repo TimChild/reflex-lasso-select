@@ -14,7 +14,7 @@ import reflex as rx
 #     pass
 
 
-class LassoSelect(rx.NoSSRComponent):
+class LassoSelect(rx.Component):
     """LassoSelect component."""
 
     # The React library to wrap.
