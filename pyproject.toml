@@ -23,3 +23,13 @@ dev = ["build", "twine"]
 
 [tool.setuptools.packages.find]
 where = ["custom_components"]
+
+[dependency-groups]
+dev = [
+    "coverage>=7.6.12",
+    "pre-commit>=4.1.0",
+    "pyright>=1.1.396",
+    "pytest>=8.3.5",
+    "pytest-playwright>=0.7.0",
+    "ruff>=0.9.10",
+]
