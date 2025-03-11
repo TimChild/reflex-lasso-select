@@ -33,6 +33,19 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
     bounding_box = lasso_component.bounding_box()
     assert bounding_box is not None
 
+    # Calculate relative positions
+    rel_x_start = 10
+    rel_y_start = 20
+
+    rel_x_2 = 50
+    rel_y_2 = 20
+
+    rel_x_3 = 50
+    rel_y_3 = 60
+
+    rel_x_4 = 10
+    rel_y_4 = 60
+
     # Calculate specific positions to click
     click_x_start = bounding_box["x"] + rel_x_start
     click_y_start = bounding_box["y"] + rel_y_start
