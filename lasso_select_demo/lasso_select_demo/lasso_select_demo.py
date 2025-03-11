@@ -30,7 +30,7 @@ def index() -> rx.Component:
                     value=State.selected_points,
                     on_change=State.set_points,
                     disabled=False,
-                    on_complete=None,
+                    on_complete=lambda: None,
                 ),
                 id="lasso-select",
             ),
