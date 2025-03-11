@@ -1,1 +1,1 @@
-from .lasso_select import *
+from .lasso_select import LassoSelect
