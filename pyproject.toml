@@ -24,6 +24,10 @@ dev = ["build", "twine"]
 [tool.pytest.ini_options]
 addopts = "--headed"
 
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+
 [tool.setuptools.packages.find]
 where = ["custom_components"]
 
