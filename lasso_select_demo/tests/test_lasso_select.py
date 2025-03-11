@@ -57,11 +57,24 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
     selected_points = page.locator("#selected-points")
     expect(selected_points).not_to_have_text("[]")
     # Check if the selected points are updated with the expected coordinates
+    # Calculate relative positions
+    rel_x_start = 10
+    rel_y_start = 20
+
+    rel_x_2 = 50
+    rel_y_2 = 20
+
+    rel_x_3 = 50
+    rel_y_3 = 60
+
+    rel_x_4 = 10
+    rel_y_4 = 60
+
     expected_text = (
-        f"[{{'x': {click_x_start}, 'y': {click_y_start}}}, "
-        f"{{'x': {click_x_2}, 'y': {click_y_2}}}, "
-        f"{{'x': {click_x_3}, 'y': {click_y_3}}}, "
-        f"{{'x': {click_x_4}, 'y': {click_y_4}}}, "
-        f"{{'x': {click_x_start}, 'y': {click_y_start}}}]"
+        f"[{{'x': {rel_x_start}, 'y': {rel_y_start}}}, "
+        f"{{'x': {rel_x_2}, 'y': {rel_y_2}}}, "
+        f"{{'x': {rel_x_3}, 'y': {rel_y_3}}}, "
+        f"{{'x': {rel_x_4}, 'y': {rel_y_4}}}, "
+        f"{{'x': {rel_x_start}, 'y': {rel_y_start}}}]"
     )
     expect(selected_points).to_have_text(expected_text)
