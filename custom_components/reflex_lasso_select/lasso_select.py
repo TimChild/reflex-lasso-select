@@ -2,7 +2,7 @@
 
 # For wrapping react guide, visit https://reflex.dev/docs/wrapping-react/overview/
 
-from typing import List, Dict, Optional
+from typing import List, Dict
 import reflex as rx
 from reflex.event import passthrough_event_spec
 
