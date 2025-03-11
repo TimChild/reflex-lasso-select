@@ -23,11 +23,10 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
     lasso_component = page.locator("#lasso-select")
     expect(lasso_component).to_be_visible()
 
-    selected_points = page.locator("#selected-points")
-    page.pause()
-
     # Check initial value of selected points
+    selected_points = page.locator("#selected-points")
     expect(selected_points).to_have_text("[]")
+    page.pause()
 
     # Get the bounding box of the lasso component
     bounding_box = lasso_component.bounding_box()
@@ -66,23 +65,7 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
     page.mouse.click(click_x_4, click_y_4)
     page.mouse.click(click_x_start, click_y_start)  # Close the polygon
 
-    # Check if the selected points are updated
-    selected_points = page.locator("#selected-points")
-    expect(selected_points).not_to_have_text("[]")
     # Check if the selected points are updated with the expected coordinates
-    # Calculate relative positions
-    rel_x_start = 10
-    rel_y_start = 20
-
-    rel_x_2 = 50
-    rel_y_2 = 20
-
-    rel_x_3 = 50
-    rel_y_3 = 60
-
-    rel_x_4 = 10
-    rel_y_4 = 60
-
     expected_text = (
         f"[{{'x': {rel_x_start}, 'y': {rel_y_start}}}, "
         f"{{'x': {rel_x_2}, 'y': {rel_y_2}}}, "
@@ -90,4 +73,5 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
         f"{{'x': {rel_x_4}, 'y': {rel_y_4}}}, "
         f"{{'x': {rel_x_start}, 'y': {rel_y_start}}}]"
     )
-    expect(selected_points).to_have_text(expected_text)
+    actual_text = selected_points.inner_text()
+    assert actual_text == expected_text, f"Expected: {expected_text}, but got: {actual_text}"
