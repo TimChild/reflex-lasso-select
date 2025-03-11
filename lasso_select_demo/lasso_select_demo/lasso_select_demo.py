@@ -23,14 +23,15 @@ class State(rx.State):
 def index() -> rx.Component:
     return rx.center(
         rx.vstack(
-            rx.heading("Lasso select demo", size="9"),
+            rx.heading("Lasso select demo", size="9", id="lasso-select-heading"),
             lasso_select(
                 src="https://picsum.photos/400/500",
                 value=State.selected_points,
                 on_change=State.set_points,
+                id="lasso-select"
             ),
             rx.text("Selected Points:"),
-            rx.text(State.selected_points_string),
+            rx.text(State.selected_points_string, id="selected-points"),
             align="center",
             spacing="7",
         ),
