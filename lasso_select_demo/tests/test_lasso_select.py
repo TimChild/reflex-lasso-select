@@ -34,17 +34,17 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
     assert bounding_box is not None
 
     # Calculate specific positions to click
-    click_x_start = bounding_box["x"] + 10  # 10 pixels from the left
-    click_y_start = bounding_box["y"] + 20  # 20 pixels from the top
+    click_x_start = bounding_box["x"] + rel_x_start
+    click_y_start = bounding_box["y"] + rel_y_start
 
-    click_x_2 = bounding_box["x"] + 50  # 50 pixels from the left
-    click_y_2 = bounding_box["y"] + 20  # 20 pixels from the top
+    click_x_2 = bounding_box["x"] + rel_x_2
+    click_y_2 = bounding_box["y"] + rel_y_2
 
-    click_x_3 = bounding_box["x"] + 50  # 50 pixels from the left
-    click_y_3 = bounding_box["y"] + 60  # 60 pixels from the top
+    click_x_3 = bounding_box["x"] + rel_x_3
+    click_y_3 = bounding_box["y"] + rel_y_3
 
-    click_x_4 = bounding_box["x"] + 10  # 10 pixels from the left
-    click_y_4 = bounding_box["y"] + 60  # 60 pixels from the top
+    click_x_4 = bounding_box["x"] + rel_x_4
+    click_y_4 = bounding_box["y"] + rel_y_4
 
     # Use the mouse to click at the specific positions to form a polygon
     page.mouse.click(click_x_start, click_y_start)
