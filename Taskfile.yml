@@ -1,6 +1,11 @@
 version: "3"
 
 tasks:
+  install:
+    cmds:
+      - uv sync --dev
+      - uv run pre-commit install
+
   lint:
     cmds:
       - uv run ruff check .
