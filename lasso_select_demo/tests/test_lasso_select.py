@@ -13,10 +13,12 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
     assert lasso_select_app.frontend_url is not None
 
     page.goto(lasso_select_app.frontend_url)
-    expect(page).to_have_title("Lasso Select Demo")
+    # Check if the heading is correct
+    heading = page.locator('h1')
+    expect(heading).to_have_text("Lasso Select Demo")
 
     # Check if the lasso select component is visible
-    lasso_component = page.locator('[id="lasso-select"]')
+    lasso_component = page.locator('#lasso-select')
     expect(lasso_component).to_be_visible()
 
     # Simulate a lasso selection
