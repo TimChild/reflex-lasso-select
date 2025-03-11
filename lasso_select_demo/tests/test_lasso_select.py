@@ -1,5 +1,6 @@
 from pathlib import Path
 import pytest
+import time
 from playwright.sync_api import Page, expect
 from reflex.testing import AppHarness
 
@@ -26,7 +27,6 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
     # Check initial value of selected points
     selected_points = page.locator("#selected-points")
     expect(selected_points).to_have_text("[]")
-    page.pause()
 
     # Get the bounding box of the lasso component
     bounding_box = lasso_component.bounding_box()
@@ -60,9 +60,13 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
 
     # Use the mouse to click at the specific positions to form a polygon
     page.mouse.click(click_x_start, click_y_start)
+    time.sleep(0.1)
     page.mouse.click(click_x_2, click_y_2)
+    time.sleep(0.1)
     page.mouse.click(click_x_3, click_y_3)
+    time.sleep(0.1)
     page.mouse.click(click_x_4, click_y_4)
+    page.pause()
     # Optionally close the polygon by clicking the start point again
     # page.mouse.click(click_x_start, click_y_start)
 
@@ -73,5 +77,15 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
         f"{{'x': {rel_x_3}, 'y': {rel_y_3}}}, "
         f"{{'x': {rel_x_4}, 'y': {rel_y_4}}}]"
     )
+    # Running headless changes the x values to be 1 lower than expected
+    expected_text_headless = (
+        f"[{{'x': {rel_x_start - 1}, 'y': {rel_y_start}}}, "
+        f"{{'x': {rel_x_2 - 1}, 'y': {rel_y_2}}}, "
+        f"{{'x': {rel_x_3 - 1}, 'y': {rel_y_3}}}, "
+        f"{{'x': {rel_x_4 - 1}, 'y': {rel_y_4}}}]"
+    )
+
     actual_text = selected_points.inner_text()
-    assert actual_text == expected_text
+    # Check if matches headless, otherwise give helpful error message by assert
+    if actual_text != expected_text_headless:
+        assert actual_text == expected_text

@@ -26,7 +26,7 @@ dev = ["build", "twine"]
 
 
 [tool.pytest.ini_options]
-addopts = "--headed"
+# addopts = "--headed"
 
 [tool.pyright]
 venvPath = "."
