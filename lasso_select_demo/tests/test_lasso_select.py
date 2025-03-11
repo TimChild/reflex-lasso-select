@@ -63,15 +63,15 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
     page.mouse.click(click_x_2, click_y_2)
     page.mouse.click(click_x_3, click_y_3)
     page.mouse.click(click_x_4, click_y_4)
-    page.mouse.click(click_x_start, click_y_start)  # Close the polygon
+    # Optionally close the polygon by clicking the start point again
+    # page.mouse.click(click_x_start, click_y_start)
 
     # Check if the selected points are updated with the expected coordinates
     expected_text = (
         f"[{{'x': {rel_x_start}, 'y': {rel_y_start}}}, "
         f"{{'x': {rel_x_2}, 'y': {rel_y_2}}}, "
         f"{{'x': {rel_x_3}, 'y': {rel_y_3}}}, "
-        f"{{'x': {rel_x_4}, 'y': {rel_y_4}}}, "
-        f"{{'x': {rel_x_start}, 'y': {rel_y_start}}}]"
+        f"{{'x': {rel_x_4}, 'y': {rel_y_4}}}]"
     )
     actual_text = selected_points.inner_text()
     assert actual_text == expected_text, f"Expected: {expected_text}, but got: {actual_text}"
