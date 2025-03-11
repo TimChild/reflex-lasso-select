@@ -29,9 +29,8 @@ def index() -> rx.Component:
                 lasso_select(
                     src="https://picsum.photos/400/500",
                     value=State.selected_points,
-                    on_change=State.set_points,
                     disabled=False,
-                    on_complete=State.set_points,
+                    on_change=State.set_points,
                 ),
                 id="lasso-select",
             ),
