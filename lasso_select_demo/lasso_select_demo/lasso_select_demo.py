@@ -4,7 +4,7 @@ from typing import List, Dict
 
 import reflex as rx
 
-from reflex_lasso_select import lasso_select
+from reflex_lasso_select.lasso_select import LassoSelect
 
 
 class State(rx.State):
@@ -25,7 +25,7 @@ def index() -> rx.Component:
         rx.vstack(
             rx.heading("Lasso select demo", size="9", id="lasso-select-heading"),
             rx.box(
-                lasso_select(
+                LassoSelect(
                     src="https://picsum.photos/400/500",
                     value=State.selected_points,
                     on_change=State.set_points,
