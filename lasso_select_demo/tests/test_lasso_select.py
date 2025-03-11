@@ -36,18 +36,29 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
     click_x_start = bounding_box['x'] + 10  # 10 pixels from the left
     click_y_start = bounding_box['y'] + 20  # 20 pixels from the top
 
-    click_x_end = bounding_box['x'] + 50  # 50 pixels from the left
-    click_y_end = bounding_box['y'] + 60  # 60 pixels from the top
+    click_x_2 = bounding_box['x'] + 50  # 50 pixels from the left
+    click_y_2 = bounding_box['y'] + 20  # 20 pixels from the top
 
-    # Use the mouse to click at the specific positions
+    click_x_3 = bounding_box['x'] + 50  # 50 pixels from the left
+    click_y_3 = bounding_box['y'] + 60  # 60 pixels from the top
+
+    click_x_4 = bounding_box['x'] + 10  # 10 pixels from the left
+    click_y_4 = bounding_box['y'] + 60  # 60 pixels from the top
+
+    # Use the mouse to click at the specific positions to form a polygon
     page.mouse.click(click_x_start, click_y_start)
-    page.mouse.down()
-    page.mouse.click(click_x_end, click_y_end)
-    page.mouse.up()
+    page.mouse.click(click_x_2, click_y_2)
+    page.mouse.click(click_x_3, click_y_3)
+    page.mouse.click(click_x_4, click_y_4)
+    page.mouse.click(click_x_start, click_y_start)  # Close the polygon
 
     # Check if the selected points are updated
     selected_points = page.locator("#selected-points")
     expect(selected_points).not_to_have_text("[]")
     # Check if the selected points are updated with the expected coordinates
-    expected_text = f"[{{'x': {click_x_start}, 'y': {click_y_start}}}, {{'x': {click_x_end}, 'y': {click_y_end}}}]"
+    expected_text = f"[{{'x': {click_x_start}, 'y': {click_y_start}}}, " \
+                    f"{{'x': {click_x_2}, 'y': {click_y_2}}}, " \
+                    f"{{'x': {click_x_3}, 'y': {click_y_3}}}, " \
+                    f"{{'x': {click_x_4}, 'y': {click_y_4}}}, " \
+                    f"{{'x': {click_x_start}, 'y': {click_y_start}}}]"
     expect(selected_points).to_have_text(expected_text)
