@@ -1,0 +1,18 @@
+version: '3'
+
+tasks:
+  lint:
+    cmds:
+      - ruff check .
+
+  pre-commit-all:
+    cmds:
+      - pre-commit run --all-files
+
+  run:
+    cmds:
+      - uv run
+
+  test:
+    cmds:
+      - pytest
