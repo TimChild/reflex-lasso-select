@@ -9,17 +9,20 @@ description = "Reflex custom component wrapping  react-lasso-select"
 readme = "README.md"
 license = { text = "Apache-2.0" }
 requires-python = ">=3.10"
-authors = [{ name = "", email = "timjchild@gmail.com" }]
-keywords = ["reflex","reflex-custom-components"]
+authors = [{ name = "Tim Child", email = "timjchild@gmail.com" }]
+keywords = ["reflex", "reflex-custom-components", "lasso-select"]
 
 dependencies = ["reflex>=0.7.1"]
 
 classifiers = ["Development Status :: 4 - Beta"]
 
 [project.urls]
+homepage = "https://github.com/TimChild/reflex-lasso-select"
+source = "https://github.com/TimChild/reflex-lasso-select"
 
 [project.optional-dependencies]
 dev = ["build", "twine"]
+
 
 [tool.pytest.ini_options]
 addopts = "--headed"
@@ -30,6 +33,7 @@ venv = ".venv"
 
 [tool.setuptools.packages.find]
 where = ["custom_components"]
+
 
 [dependency-groups]
 dev = [
