@@ -32,15 +32,15 @@ jobs:
       - name: Run lint
         run: task lint
 
-      - name: Run pre-commit
-        run: task pre-commit-all
-
       - name: Run typecheck
         run: task typecheck
 
       - name: Initialize Reflex
         run: uv run reflex init
         working-directory: lasso_select_demo
+
+      - name: Install playwright
+        run: uv run playwright install
 
       - name: Run tests
         run: task test
