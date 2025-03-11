@@ -23,7 +23,7 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
     lasso_component = page.locator("#lasso-select")
     expect(lasso_component).to_be_visible()
 
-    selected_points = page.locator('#selected-points')
+    selected_points = page.locator("#selected-points")
     page.pause()
 
     # Check initial value of selected points
@@ -36,5 +36,6 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
     page.mouse.up()
 
     # Check if the selected points are updated
-    selected_points = page.locator('#selected-points')
+    selected_points = page.locator("#selected-points")
     expect(selected_points).not_to_have_text("[]")
+    expect(selected_points).to_have_text("[{'x': 100, 'y': 100}, {'x': 200, 'y': 200}]")
