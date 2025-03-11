@@ -14,6 +14,10 @@ tasks:
     cmds:
       - uv run reflex run
 
+  typecheck:
+    cmds:
+      - uv run pyright
+
   test:
     cmds:
       - uv run pytest
