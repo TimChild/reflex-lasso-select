@@ -31,19 +31,20 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
 
     # Get the bounding box of the lasso component
     bounding_box = lasso_component.bounding_box()
+    assert bounding_box is not None
 
     # Calculate specific positions to click
-    click_x_start = bounding_box['x'] + 10  # 10 pixels from the left
-    click_y_start = bounding_box['y'] + 20  # 20 pixels from the top
+    click_x_start = bounding_box["x"] + 10  # 10 pixels from the left
+    click_y_start = bounding_box["y"] + 20  # 20 pixels from the top
 
-    click_x_2 = bounding_box['x'] + 50  # 50 pixels from the left
-    click_y_2 = bounding_box['y'] + 20  # 20 pixels from the top
+    click_x_2 = bounding_box["x"] + 50  # 50 pixels from the left
+    click_y_2 = bounding_box["y"] + 20  # 20 pixels from the top
 
-    click_x_3 = bounding_box['x'] + 50  # 50 pixels from the left
-    click_y_3 = bounding_box['y'] + 60  # 60 pixels from the top
+    click_x_3 = bounding_box["x"] + 50  # 50 pixels from the left
+    click_y_3 = bounding_box["y"] + 60  # 60 pixels from the top
 
-    click_x_4 = bounding_box['x'] + 10  # 10 pixels from the left
-    click_y_4 = bounding_box['y'] + 60  # 60 pixels from the top
+    click_x_4 = bounding_box["x"] + 10  # 10 pixels from the left
+    click_y_4 = bounding_box["y"] + 60  # 60 pixels from the top
 
     # Use the mouse to click at the specific positions to form a polygon
     page.mouse.click(click_x_start, click_y_start)
@@ -56,9 +57,11 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
     selected_points = page.locator("#selected-points")
     expect(selected_points).not_to_have_text("[]")
     # Check if the selected points are updated with the expected coordinates
-    expected_text = f"[{{'x': {click_x_start}, 'y': {click_y_start}}}, " \
-                    f"{{'x': {click_x_2}, 'y': {click_y_2}}}, " \
-                    f"{{'x': {click_x_3}, 'y': {click_y_3}}}, " \
-                    f"{{'x': {click_x_4}, 'y': {click_y_4}}}, " \
-                    f"{{'x': {click_x_start}, 'y': {click_y_start}}}]"
+    expected_text = (
+        f"[{{'x': {click_x_start}, 'y': {click_y_start}}}, "
+        f"{{'x': {click_x_2}, 'y': {click_y_2}}}, "
+        f"{{'x': {click_x_3}, 'y': {click_y_3}}}, "
+        f"{{'x': {click_x_4}, 'y': {click_y_4}}}, "
+        f"{{'x': {click_x_start}, 'y': {click_y_start}}}]"
+    )
     expect(selected_points).to_have_text(expected_text)
