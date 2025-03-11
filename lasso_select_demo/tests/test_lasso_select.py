@@ -21,6 +21,8 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
     lasso_component = page.locator('#lasso-select')
     expect(lasso_component).to_be_visible()
 
+    page.pause()
+
     # Simulate a lasso selection
     page.mouse.move(100, 100)
     page.mouse.down()
