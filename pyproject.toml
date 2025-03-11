@@ -21,6 +21,9 @@ classifiers = ["Development Status :: 4 - Beta"]
 [project.optional-dependencies]
 dev = ["build", "twine"]
 
+[tool.pytest.ini_options]
+addopts = "--headed"
+
 [tool.setuptools.packages.find]
 where = ["custom_components"]
 
