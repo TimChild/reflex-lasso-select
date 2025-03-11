@@ -24,11 +24,15 @@ jobs:
         pip install uv
         uv install
 
-    - name: Run lint
-      run: ruff check .
+    - name: Install Task
+      run: |
+        sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
 
-    - name: Run type check
-      run: pyright
+    - name: Run lint
+      run: task lint
+
+    - name: Run pre-commit
+      run: task pre-commit-all
 
     - name: Run tests
-      run: pytest
+      run: task test
