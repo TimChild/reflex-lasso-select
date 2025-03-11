@@ -1,5 +1,7 @@
 version: "3"
 
+dotenv: [".env"]
+
 tasks:
   install:
     cmds:
@@ -26,3 +28,12 @@ tasks:
   test:
     cmds:
       - uv run pytest
+
+  publish:
+    preconditions:
+      # Check environment variable
+      - sh: test -n "$PYPI_TOKEN"
+        msg: "PYPI_TOKEN is not set -- Add PYPI_TOKEN=... to .env file"
+    cmds:
+      - echo "Publishing to PyPI"
+      - uv run reflex component publish --no-validate-project-info --token $PYPI_TOKEN
