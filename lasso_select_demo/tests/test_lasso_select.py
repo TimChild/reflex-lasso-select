@@ -23,6 +23,7 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
     lasso_component = page.locator("#lasso-select")
     expect(lasso_component).to_be_visible()
 
+    selected_points = page.locator('#selected-points')
     page.pause()
 
     # Check initial value of selected points
