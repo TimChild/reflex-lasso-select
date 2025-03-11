@@ -1,18 +1,19 @@
-version: '3'
+version: "3"
 
 tasks:
   lint:
     cmds:
-      - ruff check .
+      - uv run ruff check .
 
   pre-commit-all:
     cmds:
-      - pre-commit run --all-files
+      - uv run pre-commit run --all-files
 
   run:
+    dir: lasso_select_demo
     cmds:
-      - uv run
+      - uv run reflex run
 
   test:
     cmds:
-      - pytest
+      - uv run pytest
