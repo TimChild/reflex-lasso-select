@@ -14,7 +14,7 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
 
     page.goto(lasso_select_app.frontend_url)
     # Check if the heading is correct
-    heading = page.locator('h1')
+    heading = page.locator('#lasso-select-heading')
     expect(heading).to_have_text("Lasso Select Demo")
 
     # Check if the lasso select component is visible
