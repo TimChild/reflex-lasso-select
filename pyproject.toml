@@ -12,7 +12,9 @@ requires-python = ">=3.10"
 authors = [{ name = "Tim Child", email = "timjchild@gmail.com" }]
 keywords = ["reflex", "reflex-custom-components", "lasso-select"]
 
-dependencies = ["reflex>=0.7.1"]
+dependencies = [
+    "reflex>=0.7.0",
+]
 
 classifiers = ["Development Status :: 4 - Beta"]
 
