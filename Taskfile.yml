@@ -40,4 +40,9 @@ tasks:
         msg: "PYPI_TOKEN is not set -- Add PYPI_TOKEN=... to .env file"
     cmds:
       - echo "Publishing to PyPI"
-      - uv run reflex component publish --no-validate-project-info --token $PYPI_TOKEN
+      - uv run reflex component publish --no-validate-project-info --no-share --token $PYPI_TOKEN
+
+  share:
+    desc: Share the component via the reflex library
+    cmds:
+      - uv run reflex component share
