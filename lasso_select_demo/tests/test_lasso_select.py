@@ -9,7 +9,9 @@ def lasso_select_app():
     with AppHarness.create(root=app_root) as harness:
         yield harness
 
-def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
+@pytest.mark.parametrize("browser_name", ["chromium"])
+def test_lasso_select_render(lasso_select_app: AppHarness, page: Page, browser_name):
+    page.context.browser.new_context(headless=False)
     assert lasso_select_app.frontend_url is not None
 
     page.goto(lasso_select_app.frontend_url)
