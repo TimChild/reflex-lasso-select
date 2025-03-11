@@ -1,13 +1,11 @@
-name: CI
+name: Deploy
 
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,18 +27,15 @@ jobs:
           version: 3.x
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run lint
-        run: task lint
+      - name: Check PYPI_TOKEN
+        run: |
+          if [ -z "${{ secrets.PYPI_TOKEN }}" ]; then
+            echo "PYPI_TOKEN is not set"
+            exit 1
+          fi
 
-      - name: Run pre-commit
-        run: task pre-commit-all
+      - name: Create .env file
+        run: echo "PYPI_TOKEN=${{ secrets.PYPI_TOKEN }}" > .env
 
-      - name: Run typecheck
-        run: task typecheck
-
-      - name: Initialize Reflex
-        run: uv run reflex init
-        working-directory: lasso_select_demo
-
-      - name: Run tests
-        run: task test
+      - name: Publish
+        run: task publish
