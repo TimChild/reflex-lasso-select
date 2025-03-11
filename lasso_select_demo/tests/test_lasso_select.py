@@ -74,4 +74,4 @@ def test_lasso_select_render(lasso_select_app: AppHarness, page: Page):
         f"{{'x': {rel_x_4}, 'y': {rel_y_4}}}]"
     )
     actual_text = selected_points.inner_text()
-    assert actual_text == expected_text, f"Expected: {expected_text}, but got: {actual_text}"
+    assert actual_text == expected_text
