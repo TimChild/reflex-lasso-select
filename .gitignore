@@ -4,3 +4,5 @@ dist/
 *.egg-info/
 .aider*
 .states
+.env
+*.web
