@@ -16,6 +16,10 @@ tasks:
     cmds:
       - uv run pre-commit run --all-files
 
+  pre-commit-update:
+    cmds:
+      - uv run pre-commit autoupdate
+
   run:
     dir: lasso_select_demo
     cmds:
