@@ -2,8 +2,9 @@
 
 # For wrapping react guide, visit https://reflex.dev/docs/wrapping-react/overview/
 
-from typing import List, Dict
+from typing import List, Dict, Optional
 import reflex as rx
+from reflex.event import passthrough_event_spec
 
 # Some libraries you want to wrap may require dynamic imports.
 # This is because they they may not be compatible with Server-Side Rendering (SSR).
@@ -33,8 +34,8 @@ class LassoSelect(rx.Component):
     value: rx.Var[List[Dict[str, float]]]
     disabled: rx.Var[bool]
 
-    on_change: rx.EventHandler[lambda points: [points]]
-    on_complete: rx.EventHandler[lambda points: [points]]
+    on_change: rx.EventHandler[passthrough_event_spec(List[Dict[str, float]])]
+    on_complete: rx.EventHandler[passthrough_event_spec(List[Dict[str, float]])]
 
     # To add custom code to your component
     # def _get_custom_code(self) -> str:
